@@ -5,33 +5,33 @@
     contains: "^TAILS_PRODUCT_NAME="
   register: tails_os_string
 
-- name: Confirm host OS is Tails.
-  assert:
-    that:
-      - ansible_lsb.id == "Tails" or tails_os_string.matched
-      - ansible_lsb.major_release|int >= 10
-    msg: >-
-      SecureDrop requires Tails 4 or greater for workstation environments.
+# - name: Confirm host OS is Tails.
+#   assert:
+#     that:
+#       - ansible_lsb.id == "Tails" or tails_os_string.matched
+#       - ansible_lsb.major_release|int >= 10
+#     msg: >-
+#       SecureDrop requires Tails 4 or greater for workstation environments.
 
-- name: Check for persistence volume.
-  stat:
-    path: "{{ item }}"
-  register: tails_persistence_check_result
-  with_items:
-    - /live/persistence/TailsData_unlocked/persistence.conf
-    - /live/persistence/TailsData_unlocked/openssh-client
-    - /home/amnesia/Persistent/securedrop
+# - name: Check for persistence volume.
+#   stat:
+#     path: /live/persistence/TailsData_unlocked/persistence.conf
+#   register: tails_persistence_check_result
+#   with_items:
+#     - /live/persistence/TailsData_unlocked/persistence.conf
+#     - /live/persistence/TailsData_unlocked/openssh-client
+#     - /home/amnesia/Persistent/securedrop
 
-- name: Confirm persistence volume is configured.
-  assert:
-    that:
-      - item.stat.exists
-    msg: >-
-      Persistence must configured on the Tails device for the Admin
-      Workstation, and the SSH option for persistent dotfiles must be enabled.
-      The SecureDrop git repository should be cloned
-      to `~/Persistent/securedrop`.
-  with_items: "{{ tails_persistence_check_result.results }}"
+# - name: Confirm persistence volume is configured.
+#   assert:
+#     that:
+#       - item.stat.exists
+#     msg: >-
+#       Persistence must configured on the Tails device for the Admin
+#       Workstation, and the SSH option for persistent dotfiles must be enabled.
+#       The SecureDrop git repository should be cloned
+#       to `~/Persistent/securedrop`.
+#   with_items: "{{ tails_persistence_check_result.results }}"
 
 - name: Check for v3 SSH auth files
   stat:
@@ -78,7 +78,7 @@
       file under `~/Persistent/securedrop/install_files/ansible-base/ and
       retry the install command.
   when:
-    - v3_source_file.stat.exists
+   - v3_source_file.stat.exists
 
 - name: Confirm that the Tor keys file is present
   assert:
