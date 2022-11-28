@@ -46,37 +46,37 @@
   tags:
     - ntp
 
-- name: Ensure systemd-timesyncd service is enabled.
-  systemd:
-    name: systemd-timesyncd
-    enabled: yes
-    masked: no
-    state: started
-  become: yes
-  tags:
-    - ntp
-
-- name: Ensure NTP is enabled.
-  command: "timedatectl set-ntp 1"
-  become: yes
-  tags:
-    - ntp
-
-- name: Verify time service configuration.
-  command: "timedatectl show"
-  register: timedatectl_show_result
-  become: yes
-  changed_when:
-    - "'\nNTP=yes' in timedatectl_show_result.stdout"
-    - "'\nNTPSynchronized=yes' in timedatectl_show_result.stdout"
-  tags:
-    - ntp
-
-- name: Ensure the system clock is set accurately.
-  command: "timedatectl show-timesync"
-  register: timedatectl_show_timesync_result
-  become: yes
-  changed_when:
-    - "'\nNTPMessage=' in timedatectl_show_timesync_result.stdout"
-  tags:
-    - ntp
+#- name: Ensure systemd-timesyncd service is enabled.
+#  systemd:
+#    name: systemd-timesyncd
+#    enabled: yes
+#    masked: no
+#    state: started
+#  become: yes
+#  tags:
+#    - ntp
+#
+#- name: Ensure NTP is enabled.
+#  command: "timedatectl set-ntp 1"
+#  become: yes
+#  tags:
+#    - ntp
+#
+#- name: Verify time service configuration.
+#  command: "timedatectl show"
+#  register: timedatectl_show_result
+#  become: yes
+#  changed_when:
+#    - "'\nNTP=yes' in timedatectl_show_result.stdout"
+#    - "'\nNTPSynchronized=yes' in timedatectl_show_result.stdout"
+#  tags:
+#    - ntp
+#
+#- name: Ensure the system clock is set accurately.
+#  command: "timedatectl show-timesync"
+#  register: timedatectl_show_timesync_result
+#  become: yes
+#  changed_when:
+#    - "'\nNTPMessage=' in timedatectl_show_timesync_result.stdout"
+#  tags:
+#    - ntp
