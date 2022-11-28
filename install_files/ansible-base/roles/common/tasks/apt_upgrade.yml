@@ -60,14 +60,14 @@
   # Ansible doesn't support notifying handlers based on file existence, results,
   # e.g. via registered `stat` results, only only on changed=true task results,
   # so let's craft a task that returns changed=true if-and-only-if a file exists.
-- name: Check if reboot is required due to security updates.
-  command: /bin/true
-  args:
-    # This task won't actually remove anything, given the task is simply `true`,
-    # but leveraging the `removes` arg allows us to run the task conditionally,
-    # based on file existence, which is an accurate indicator of whether a reboot
-    # is required.
-    removes: /var/run/reboot-required
-  notify: reboot
-  tags:
-    - reboot
+#- name: Check if reboot is required due to security updates.
+#  command: /bin/true
+#  args:
+#    # This task won't actually remove anything, given the task is simply `true`,
+#    # but leveraging the `removes` arg allows us to run the task conditionally,
+#    # based on file existence, which is an accurate indicator of whether a reboot
+#    # is required.
+#    removes: /var/run/reboot-required
+#  notify: reboot
+#  tags:
+#    - reboot

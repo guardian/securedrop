@@ -1,10 +1,10 @@
 ---
-- name: Reboot if required due to security updates.
-  reboot:
-    post_reboot_delay: 30
-  tags:
-    - reboot
-  when: not securedrop_staging_qubes_env|default(False)
+#- name: Reboot if required due to security updates.
+#  reboot:
+#    post_reboot_delay: 30
+#  tags:
+#    - reboot
+#  when: not securedrop_staging_qubes_env|default(False)
 
 - name: Gracefully halt Qubes staging VM
   command: qvm-shutdown --wait {{ "sd-staging-app" if "app" in inventory_hostname else "sd-staging-mon" }}-{{ securedrop_target_distribution }}
