@@ -27,15 +27,15 @@
   tags:
     - apt
 
-- name: Validate that all installed kernels are grsecurity-hardened.
-  assert:
-    that:
-      - item is search('-grsec')
-    msg: "Not all non-grsec kernels have been removed, run dpkg-query -W 'linux-image*' for more details."
-  with_items: "{{ apt_installed_kernels.stdout_lines }}"
-  tags:
-    - apt
-    - grsecurity
+#- name: Validate that all installed kernels are grsecurity-hardened.
+#  assert:
+#    that:
+#      - item is search('-grsec')
+#    msg: "Not all non-grsec kernels have been removed, run dpkg-query -W 'linux-image*' for more details."
+#  with_items: "{{ apt_installed_kernels.stdout_lines }}"
+#  tags:
+#    - apt
+#    - grsecurity
 
 - name: Remove dependencies that are no longer required
   apt:
