@@ -5,4 +5,4 @@
 - include: configure_server.yml
   when: ossec_is_server
 
-- include: register.yml
+#- include: register.yml
