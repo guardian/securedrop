@@ -25,7 +25,7 @@
     host: "{{ remote_host_ref|default(ansible_host) }}"
     port: "{{ ansible_port|default(ansible_port|default(22)) }}"
     delay: 30
-    search_regex: OpenSSH
+    search_regex: login
     state: started
   become: no
 
